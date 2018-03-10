@@ -53,8 +53,8 @@ void ecritureResultat(chaine nomFichier,tableauvar Premier){
 	fclose(f);
 }
 
-point evalpoly(poly polynome){
-  point Y;
+zero evalpoly(poly polynome){
+  zero Y;
   for (int j = polynome.a;j<= polynome.b; j++)
   {
 
@@ -64,8 +64,9 @@ point evalpoly(poly polynome){
   		y = maj + y;
 
   	}
-  	Y.x[j-polynome.a]=j;
-  	Y.y[j-polynome.a]=y;
+  	Y.Z[j-polynome.a].x=j;
+  	Y.Z[j-polynome.a].y=y;
+		Y.nbpt = Y.nbpt+1;
   }
   return Y;
 }
@@ -79,4 +80,24 @@ poly deriveePolynome(poly polynome){
   derivee.a = polynome.a;
   derivee.b = polynome.b;
   return derivee;
+}
+zero zeroiterative(zero Y){
+	zero Zeros;
+	for (i = 0; i < Y.nbpt; i++) {
+
+  if(Y.Z[i].y*Y.Z[i+1].y < 0){
+		Zeros.Z[i].x=i;
+		Zeros.Z[i].y=Y[i+0,5].y;
+		Zeros.nbpt=1+Zeros.nbpt;
+  }
+}
+
+return Zeros;
+}
+zero zerorecursive(){
+
+}
+tableauvar calcultableau(poly polynome,poly derivee, zero P,zero D){
+
+
 }

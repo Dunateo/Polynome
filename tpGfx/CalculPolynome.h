@@ -14,10 +14,16 @@ typedef struct zero{
 typedef struct tableauvar{
 	poly polynome,derivee;
 	zero P, D;
-	int variation;
+	var Variation[DIMM];
 }tableauvar;
+typedef struct var{
+	int a, b;
+	int forme;
+}var;
 
 poly lecturePoly(chaine nomFichier);
 void ecritureResultat(chaine nomFichier,tableauvar Premier);
-point evalpoly(poly polynome);
+zero evalpoly(poly polynome);
 poly deriveePolynome(poly polynome);
+zero zeroiterative(zero Y);
+tableauvar calcultableau(tableauvar Premier);
