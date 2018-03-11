@@ -1,5 +1,5 @@
-exemple: exemple.o libisentlib.a
-	gcc -Wall exemple.o -o exemple libisentlib.a -lm -lglut -lGL -lX11
+exemple: exemple.o libisentlib.a CalculPolynome.o
+	gcc -Wall exemple.o -o exemple CalculPolynome.o libisentlib.a -lm -lglut -lGL -lX11
 # Sous MacOSX, commenter la ligne de commande ci-dessus (en mettant un # au debut)
 # et de-commenter la ligne de commande ci-apres :
 #	gcc -Wall exemple.o -o exemple libisentlib.a -lm -framework OpenGL -framework GLUT
@@ -10,7 +10,10 @@ exempleTortue: exempleTortue.o libisentlib.a
 # et de-commenter la ligne de commande ci-apres :
 #	gcc -Wall exempleTortue.o -o exempleTortue libisentlib.a -lm -framework OpenGL -framework GLUT
 
-exemple.o: exemple.c GfxLib.h BmpLib.h ESLib.h
+CalculPolynome.o: CalculPolynome.c CalculPolynome.h
+	gcc -Wall -c CalculPolynome.c
+
+exemple.o: exemple.c GfxLib.h BmpLib.h ESLib.h CalculPolynome.h
 	gcc -Wall -c exemple.c
 
 exempleTortue.o: exempleTortue.c GfxLib.h BmpLib.h ESLib.h TortueLib.h
@@ -65,4 +68,3 @@ clean:
 
 deepclean: clean
 	rm -f exemple exempleTortue libisentlib.a
-
