@@ -10,7 +10,7 @@ typedef struct var{
 }var;
 typedef struct poly{
 	int Coeff[DIM];
-	float a,b;
+	float a,b,c,d;
 	int degre;
 }poly;
 typedef struct zero{

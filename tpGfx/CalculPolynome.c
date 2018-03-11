@@ -14,8 +14,10 @@ poly lecturePoly(chaine nomFichier){
 		return P;
 	printf("fichier ouvert les guys\n");
 	fscanf(f,"degre: %d\n",&(P.degre));
-	fscanf(f,"a: %f\n",&P.a);
-  fscanf(f,"b: %f\n",&P.b);
+	fscanf(f,"xmin: %f\n",&P.a);
+  fscanf(f,"xmax: %f\n",&P.b);
+	fscanf(f,"ymin: %f\n",&P.c);
+  fscanf(f,"ymax: %f\n",&P.d);
 	for(i=0;i<(P.degre+1);i++)
 	{
 		fscanf(f,"c:%d\n",&(P.Coeff[i]));
@@ -65,10 +67,10 @@ void ecritureResultat(chaine nomFichier,tableauvar Premier, zero PointP, zero Po
   }
 
 	if(Premier.variation.forme == 1){
-		fprintf(f, "variation: croissante sur l'intervalle\n" );
+		fprintf(f, "\nvariation: croissante sur l'intervalle\n" );
 	}
 	if(Premier.variation.forme == 0){
-		fprintf(f, "variation: decroissante sur l'intervalle\n" );
+		fprintf(f, "\nvariation: decroissante sur l'intervalle\n" );
 	}
 
 	fclose(f);

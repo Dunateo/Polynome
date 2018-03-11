@@ -1,6 +1,8 @@
 degre:2
-a:3
-b:4
+xmin:-10
+xmax:10
+ymin:-5
+ymax:5
 c:1
 c:2
 c:3

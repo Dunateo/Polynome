@@ -6,6 +6,7 @@
 #include "BmpLib.h" // Cet include permet de manipuler des fichiers BMP
 #include "ESLib.h" // Pour utiliser valeurAleatoire()
 #include "CalculPolynome.h"
+#include "Graphique.h"
 
 // Largeur et hauteur par defaut d'une image correspondant a nos criteres
 #define LargeurFenetre 1080
@@ -132,7 +133,8 @@ void gestionEvenement(EvenementGfx evenement)
 
 			// On part d'un fond d'ecran blanc
 			effaceFenetre (255, 255, 255);
-
+			affichageTableau(Premier);
+			affichageGraphique(Premier);
 
 
 
