@@ -64,7 +64,8 @@ void gestionEvenement(EvenementGfx evenement)
 	static poly polynome;
 	static poly derivee;
 	static zero PointP;
-	static zero PointD;
+	static zero PointPp;
+	static zero PointD, PointPixels;
 	static zero P;
 	static zero D;
 	static tableauvar Premier;
@@ -90,14 +91,15 @@ void gestionEvenement(EvenementGfx evenement)
 		i2 = derivee.degre;
 		x2 = derivee.a;
 		printf("test reussi1\n" );
-		while(j<20){
+		while(j<100){
 
 		PointP.Z[j].y = evalpoly( polynome,i,x);
 		PointP.Z[j].x = x;
-		x = x+(polynome.b-polynome.a)/20;
+		x = x+(polynome.b-polynome.a)/100;
 		PointP.nbpt =PointP.nbpt+1;
 		j++;
 	}
+
 	while(l<20){
 
 	PointD.Z[l].y = evalpoly(derivee,i2,x2);
@@ -111,8 +113,10 @@ void gestionEvenement(EvenementGfx evenement)
 		printf("test reussi3\n" );
 		D = zeroiterative( PointD, derivee);
 		printf("test reussi4\n" );
-		Premier = calcultableau( polynome, derivee,  P, D, PointP);
+		Premier = calcultableau( polynome, derivee,  P, D, PointD);
 		printf("test reussi5\n" );
+		PointPp = calculpixel(PointP,  Premier);
+		PointPixels = calculPointZero( D,  Premier);
 		ecritureResultat("texte/resultat.txt",Premier, PointP, PointD);
 
 
@@ -135,13 +139,14 @@ void gestionEvenement(EvenementGfx evenement)
 			effaceFenetre (255, 255, 255);
 			affichageTableau(Premier);
 			affichageGraphique(Premier);
+			affichagePoint(PointPp,PointPixels);
 
 
 
 
 
 		case Clavier:
-			printf("%c : ASCII %d\n", caractereClavier(), caractereClavier());
+
 
 			switch (caractereClavier())
 			{
@@ -184,7 +189,7 @@ void gestionEvenement(EvenementGfx evenement)
 			break;
 
 		case ClavierSpecial:
-			printf("ASCII %d\n", toucheClavier());
+
 			break;
 
 		case BoutonSouris:

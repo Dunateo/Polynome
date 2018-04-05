@@ -60,6 +60,7 @@ void ecritureResultat(chaine nomFichier,tableauvar Premier, zero PointP, zero Po
     fprintf(f,"zeros: (%.2f;",(Premier.D.Z[e].x));
 		fprintf(f,"%.2f)\n",(Premier.D.Z[e].y));
   }
+	fprintf(f, "le nombre de zeros: %d\n",Premier.D.nbpt );
 	fprintf(f,"Les vingts points de la derivee:\n");
 	for (int ga = 0; ga<(PointD.nbpt) ; ga++) {
     fprintf(f,"(%.2f",(PointD.Z[ga].x));
@@ -71,6 +72,9 @@ void ecritureResultat(chaine nomFichier,tableauvar Premier, zero PointP, zero Po
 	}
 	if(Premier.variation.forme == 0){
 		fprintf(f, "\nvariation: decroissante sur l'intervalle\n" );
+	}
+	if(Premier.variation.forme == 2){
+		fprintf(f, "\nvariation: monotone sur l'intervalle\n" );
 	}
 
 	fclose(f);
@@ -101,6 +105,7 @@ poly deriveePolynome(poly polynome){
 zero zeroiterative(zero Y , poly polynome){
 	zero Zeros;
 	int j =0;
+
 	for (int i = 0; i < Y.nbpt; i++) {
 		if(Y.Z[i].y == 0){
 			Zeros.Z[j].y = Y.Z[i].y;
@@ -125,22 +130,27 @@ return Zeros;
 //zero zerorecursive(){
 
 //}
-tableauvar calcultableau(poly polynome,poly derivee, zero P,zero D, zero PointP){
+tableauvar calcultableau(poly polynome,poly derivee, zero P,zero D, zero PointD){
 
 	tableauvar un;
 	un.polynome = polynome;
 	un.derivee = derivee;
 	un.P = P;
 	un.D = D;
-	if(PointP.Z[0].y>0){
-		un.variation.a = PointP.Z[0].x;
+	if(PointD.Z[0].y>0){
+		un.variation.a = PointD.Z[0].x;
 		un.variation.b = un.P.Z[0].x;
 		un.variation.forme = 1;
 	}
-	if(PointP.Z[0].y<0){
-		un.variation.a = PointP.Z[0].x;
+	if(PointD.Z[0].y<0){
+		un.variation.a = PointD.Z[0].x;
 		un.variation.b = un.P.Z[0].x;
 		un.variation.forme = 0;
+	}
+	if(PointD.Z[0].y==0){
+		un.variation.a = PointD.Z[0].x;
+		un.variation.b = un.P.Z[0].x;
+		un.variation.forme = 2;
 	}
 
 
