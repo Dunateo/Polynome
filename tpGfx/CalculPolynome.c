@@ -35,15 +35,17 @@ void ecritureResultat(chaine nomFichier,tableauvar Premier, zero PointP, zero Po
   fprintf(f, "Polynome:\n");
 	fprintf(f,"degre: %d\n",Premier.polynome.degre);
 	fprintf(f,"domaine de définition: (%.2f,%.2f)\n",Premier.polynome.a,Premier.polynome.b);
-	for(i=0;i<(Premier.polynome.degre+1);i++)
+	fprintf(f,"Forme:\n");
+	fprintf(f,"%dx^%d",Premier.polynome.Coeff[Premier.polynome.degre], Premier.polynome.degre);
+	for(i=Premier.polynome.degre-1;i>=0;i--)
 	{
-		fprintf(f,"c[%d]: %d\n",i,(Premier.polynome.Coeff[i]));
+		fprintf(f,"+ %dx^%d ",(Premier.polynome.Coeff[i]),i);
 	}
   for (int h = 0; h <(Premier.P.nbpt) ; h++) {
-    fprintf(f,"zeros: (%.2f",(Premier.P.Z[h].x));
+    fprintf(f,"\nzeros: (%.2f",(Premier.P.Z[h].x));
 		fprintf(f, ";%.2f)\n",(Premier.P.Z[h].y));
   }
-	fprintf(f,"Les vingts points du polynome:\n");
+	fprintf(f,"\nLes vingts points du polynome:\n");
 	for (int g = 0; g<(PointP.nbpt) ; g++) {
     fprintf(f,"(%.2f",(PointP.Z[g].x));
 		fprintf(f, ";%.2f)\n",(PointP.Z[g].y));
